@@ -28,11 +28,21 @@ pub fn display_data_empty() {
             .draw(|frame| {
                 let size = frame.area();
                 let block = Block::default().borders(Borders::ALL).title("Main Menue");
+        terminal
+            .draw(|frame| {
+                let size = frame.area();
+                let block = Block::default().borders(Borders::ALL).title("Main Menue");
 
                 let paragraph =
                     Paragraph::new("No data stored. \nPlease press p to add a new password.")
                         .block(block);
+                let paragraph =
+                    Paragraph::new("No data stored. \nPlease press p to add a new password.")
+                        .block(block);
 
+                frame.render_widget(paragraph, size);
+            })
+            .unwrap();
                 frame.render_widget(paragraph, size);
             })
             .unwrap();
@@ -307,6 +317,7 @@ pub fn display_uris(mut entries: Vec<Entry>) -> Result<Vec<Entry>, Box<dyn Error
             }
         }
     }
+}
 
     disable_raw_mode().unwrap();
     terminal.clear()?;
